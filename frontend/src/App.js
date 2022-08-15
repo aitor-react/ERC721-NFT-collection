@@ -6,7 +6,7 @@ import myEpicNft from './utils/MyEpicNFT.json';
 
 
 // Constants
-const TWITTER_HANDLE = '_buildspace';
+const TWITTER_HANDLE = 'MandalorMando';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = '';
 const TOTAL_MINT_COUNT = 50;
@@ -20,6 +20,15 @@ const App = () => {
     * First make sure we have access to window.ethereum
     */
     const { ethereum } = window;
+
+    let chainId = await ethereum.request({ method: 'eth_chainId' });
+    console.log("Connected to chain " + chainId);
+
+    // String, hex code of the chainId of the Rinkebey test network
+    const goerliChainId = "0x5"; 
+    if (chainId !== goerliChainId) {
+	    alert("You are not connected to the Goerli Test Network!");
+    }
 
     if (!ethereum) {
       console.log("Make sure you have metamask!");
@@ -156,7 +165,7 @@ const App = () => {
       <div className="App">
         <div className="container">
           <div className="header-container">
-            <p className="header gradient-text">My NFT Collection</p>
+            <p className="header gradient-text">Aitor's NFT Collection</p>
             <p className="sub-text">
               Each unique. Each beautiful. Discover your NFT today.
             </p>
@@ -171,7 +180,7 @@ const App = () => {
               href={TWITTER_LINK}
               target="_blank"
               rel="noreferrer"
-            >{`built on @${TWITTER_HANDLE}`}</a>
+            >{`built by @${TWITTER_HANDLE}`}</a>
           </div>
         </div>
       </div>
